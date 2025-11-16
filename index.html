@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Преподавателя Высшей Школы!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d1b3a, #1e3a8a, #3b82f6);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-photos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .photo {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 0;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease;
+        }
+
+        .professor-icon {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 25px 0;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            animation: slideIn 1.5s ease;
+        }
+
+        .wishes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .wish-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .wish-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .decoration:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation: float 6s infinite;
+        }
+
+        .decoration:nth-child(2) {
+            top: 15%;
+            right: 8%;
+            animation: float 7s infinite 1s;
+        }
+
+        .decoration:nth-child(3) {
+            bottom: 20%;
+            left: 7%;
+            animation: float 8s infinite 2s;
+        }
+
+        .decoration:nth-child(4) {
+            bottom: 10%;
+            right: 5%;
+            animation: float 9s infinite 3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside1 {
+
+            0%,
+            100% {
+                transform: translate(-40vw, -50vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(30vw, 20vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(30vw, -50vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-40vw, 20vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside2 {
+
+            0%,
+            100% {
+                transform: translate(-40vw, -15vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-5vw, -50vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(30vw, -15vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-5vw, 20vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside3 {
+
+            0%,
+            100% {
+                transform: translate(30vw, 20vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(30vw, -50vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-40vw, 20vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-40vw, -50vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside4 {
+
+            0%,
+            100% {
+                transform: translate(-5vw, -50vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(30vw, -15vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-5vw, 20vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-40vw, -15vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside5 {
+
+            0%,
+            100% {
+                transform: translate(30vw, -50vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-40vw, 20vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-40vw, -50vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(30vw, 20vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside6 {
+
+            0%,
+            100% {
+                transform: translate(30vw, -15vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-5vw, 20vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-40vw, -15vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-5vw, -50vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside7 {
+
+            0%,
+            100% {
+                transform: translate(-40vw, 20vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-40vw, -50vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(30vw, 20vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(30vw, -50vh) rotate(0deg);
+            }
+        }
+
+        @keyframes floatOutside8 {
+
+            0%,
+            100% {
+                transform: translate(-5vw, 20vh) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-40vw, -15vh) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-5vw, -50vh) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(30vw, -15vh) rotate(0deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .message {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message {
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            .wish-item {
+                font-size: 1rem;
+                padding: 12px 18px;
+            }
+
+            .photo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-photos" id="floatingPhotos"></div>
+    <div class="container">
+        <div class="decoration">🎓</div>
+        <div class="decoration">📚</div>
+        <div class="decoration">✨</div>
+        <div class="decoration">⭐</div>
+        <div class="header">
+            <h1>С Днём Преподавателя Высшей Школы!</h1>
+            <div class="subtitle">Ваш труд вдохновляет и открывает новые горизонты!</div>
+        </div>
+        <div class="professor-icon">🎓</div>
+        <div class="message">
+            Уважаемая Гульнара Ахмановна! Поздравляю Вас с профессиональным праздником!
+            Хочу выразить Вам свою искреннюю благодраность за те знания и мудрость, которыми Вы щедро делитесь.
+            Вы создаёте пространство, где хочется задавать вопросы и глубже погружаться в предмет.
+            <br><br>
+            Спасибо за Ваше терпение и Вашу безграничную поддержку. В трудные моменты Ваша вера в меня помогала не
+            опускать до конца руки.
+            Вы - тот наставник, который видит потенциал в каждом студенте и помогает ему раскрыться.
+        </div>
+        <div class="wishes">
+            <div class="wish-item">Здоровья</div>
+            <div class="wish-item">Терпения</div>
+            <div class="wish-item">Вдохновения</div>
+            <div class="wish-item">Успехов</div>
+            <div class="wish-item">Признания</div>
+        </div>
+        <div class="footer">
+            С глубоким уважением, ваши студенты и коллеги
+        </div>
+    </div>
+    <script>
+        const photoUrls = [
+            'https://i.postimg.cc/PrS6mnmx/photo-5247211071251090257-y.jpg',
+            'https://i.postimg.cc/tCPqJbwf/2-(4).jpg',
+            'https://i.postimg.cc/Qt0B6DhQ/1.jpg',
+            'https://i.postimg.cc/K80hpBf2/2.jpg',
+            'https://i.postimg.cc/g2QN00kM/3.jpg',
+            'https://i.postimg.cc/fyvS68JN/3.png',
+            'https://i.postimg.cc/6pZ4K670/4.jpg',
+            'https://i.postimg.cc/T1hqJ8tS/5.jpg'
+        ];
+        const animations = [
+            'floatOutside1 30s infinite linear',
+            'floatOutside2 30s infinite linear',
+            'floatOutside3 30s infinite linear',
+            'floatOutside4 30s infinite linear',
+            'floatOutside5 30s infinite linear',
+            'floatOutside6 30s infinite linear',
+            'floatOutside7 30s infinite linear',
+            'floatOutside8 30s infinite linear'
+        ];
+        function createFloatingPhotos() {
+            const container = document.getElementById('floatingPhotos');
+            photoUrls.forEach((url, index) => {
+                const photo = document.createElement('div');
+                photo.className = 'photo';
+                photo.style.left = '50%';
+                photo.style.top = '50%';
+                photo.style.animation = animations[index];
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = `Фото ${index + 1}`;
+                photo.appendChild(img);
+                container.appendChild(photo);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            createFloatingPhotos();
+            const elements = document.querySelectorAll('.wish-item');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.5s ease';
+
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+            const container = document.querySelector('.container');
+            container.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            container.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
